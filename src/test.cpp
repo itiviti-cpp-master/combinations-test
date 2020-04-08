@@ -119,7 +119,7 @@ TEST_F(CombinationsTest, order_direct)
     ASSERT_EQ("Bundle", combinations().classify(components, order));
     ASSERT_EQ(components.size(), order.size());
     ASSERT_TRUE(check_order_basic(order));
-    for (int i = 0; i < order.size(); ++i) {
+    for (int i = 0, end = order.size(); i < end; ++i) {
         ASSERT_EQ(i % 4, (order[i] - 1) % 4);
     }
 }
@@ -140,7 +140,7 @@ TEST_F(CombinationsTest, order_reverse)
     ASSERT_EQ("Bundle", combinations().classify(components, order));
     ASSERT_EQ(components.size(), order.size());
     ASSERT_TRUE(check_order_basic(order));
-    for (int i = 0; i < order.size(); ++i) {
+    for (int i = 0, end = order.size(); i < end; ++i) {
         ASSERT_EQ(3 - (i % 4), (order[i] - 1) % 4);
     }
 }
