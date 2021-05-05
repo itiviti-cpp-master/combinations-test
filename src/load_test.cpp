@@ -1967,7 +1967,7 @@ struct LoadTest : ::testing::Test
 
 TEST_F(LoadTest, many)
 {
-    const std::size_t N = 8;
+    const std::size_t N = 4, M = 50;
     std::mt19937_64 gen(std::random_device{}());
     std::vector<std::vector<std::vector<Component>>> sets;
     sets.reserve(N);
@@ -1978,8 +1978,8 @@ TEST_F(LoadTest, many)
     std::vector<std::thread> threads;
     threads.reserve(N);
     for (std::size_t i = 0; i < N; ++i) {
-        threads.emplace_back([&data = sets[i], this] {
-                for (std::size_t i = 0; i < 400; ++i) {
+        threads.emplace_back([&data = sets[i], M, this] {
+                for (std::size_t i = 0; i < M; ++i) {
                     for (const auto & components : data) {
                         std::vector<int> order;
                         combinations.classify(components, order);
