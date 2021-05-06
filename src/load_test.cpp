@@ -1967,7 +1967,7 @@ struct LoadTest : ::testing::Test
 
 TEST_F(LoadTest, many)
 {
-    const std::size_t N = 8, M = 200;
+    const std::size_t N = 8, M = 250;
     std::mt19937_64 gen(std::random_device{}());
     std::vector<std::vector<std::vector<Component>>> sets;
     sets.reserve(N);
