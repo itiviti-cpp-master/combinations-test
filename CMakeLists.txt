@@ -4,11 +4,11 @@ cmake_minimum_required(VERSION 3.13)
 set(ROOT_INCLUDES ${PROJECT_SOURCE_DIR}/include)
 
 # Data files
-file(GLOB SRC_ETC_FILE {$PROJECT_SOURCE_DIR}/etc/*)
-file(GLOB ETC_FILES RELATIVE ${PROJECT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/etc/*)
+file(GLOB SRC_ETC_FILE {CMAKE_CURRENT_LIST_DIR}/etc/*)
+file(GLOB ETC_FILES RELATIVE ${CMAKE_CURRENT_LIST_DIR} ${CMAKE_CURRENT_LIST_DIR}/etc/*)
 
 # Data directory
-file(GLOB SRC_ETC_DIR ${PROJECT_SOURCE_DIR}/etc)
+file(GLOB SRC_ETC_DIR ${CMAKE_CURRENT_LIST_DIR}/etc)
 
 # Tests project
 set(PROJECT_NAME combinations_test)
@@ -36,7 +36,7 @@ target_link_libraries(runUnitTests combinations_lib)
 # Copy data files for tests
 add_custom_command(
     OUTPUT ${ETC_FILES}
-    COMMAND ${CMAKE_COMMAND} -E copy_directory ${SRC_ETC_DIR} "${CMAKE_CURRENT_BINARY_DIR}/../etc"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${SRC_ETC_DIR} "${CMAKE_CURRENT_BINARY_DIR}/etc"
     DEPENDS ${SRC_ETC_FILES}
     COMMENT "Copying test data")
 
