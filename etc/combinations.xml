@@ -411,6 +411,19 @@
         </legs>
     </combination>
 
+    <combination name="Straddle strip jumps" shortname="STrSJ" identifier="f3914366-71df-11e2-828e-fa5177e7d319">
+        <legs cardinality="fixed">
+            <leg type="C" ratio="1" strike="X" expiration="X"/>
+            <leg type="P" ratio="1" strike="X" expiration="X"/>
+            <leg type="C" ratio="1" strike="X" expiration_offset="2d"/>
+            <leg type="P" ratio="1" strike="X" expiration_offset="1m"/>
+            <leg type="C" ratio="1" strike="X" expiration_offset="2m"/>
+            <leg type="P" ratio="1" strike="X" expiration_offset="60d"/>
+            <leg type="C" ratio="1" strike="X" expiration_offset="3q"/>
+            <leg type="P" ratio="1" strike="X" expiration_offset="3y"/>
+        </legs>
+    </combination>
+
     <combination name="Options strip" shortname="OS" identifier="d8da1af8-575b-11df-b293-75f47d9296ce">   <!-- *** -->
         <legs cardinality="more" mincount="3">
             <leg type="O" ratio="1"/>
