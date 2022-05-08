@@ -2,7 +2,7 @@
 set(CMAKE_CONFIGURATION_TYPES "ASAN;MSAN;USAN" CACHE STRING "" FORCE)
 
 # General compile and link options
-set(COMPILE_OPTS -O3 -Wall -Wextra -Werror -pedantic -pedantic-errors)
+set(COMPILE_OPTS -g -O3 -Wall -Wextra -Werror -pedantic -pedantic-errors)
 set(LINK_OPTS "")
 
 # Sanitizers options
@@ -33,7 +33,6 @@ function(setup_warnings TARGET)
         set_target_properties(${TARGET} PROPERTIES CXX_CLANG_TIDY clang-tidy)
     endif()
     # Warnings
-    target_compile_options(${TARGET} PRIVATE -Wno-error-unknown-warning-option) # just in case if some warnings are unavialable
     target_compile_options(${TARGET} PRIVATE -Wold-style-cast)
     target_compile_options(${TARGET} PRIVATE -Wnull-dereference)
 
