@@ -424,6 +424,20 @@
         </legs>
     </combination>
 
+    <combination name="Christmas gift" shortname="CG" identifier="w8rt1af8-325b-156f-b123-75f47321h6ce">
+        <legs cardinality="fixed">
+            <leg type="C" ratio="2" strike="X"/>
+            <leg type="P" ratio="1" strike_offset="--"/>
+            <leg type="C" ratio="1" strike_offset="++"/>
+            <leg type="P" ratio="1" strike_offset="+++"/>
+            <leg type="C" ratio="1" strike_offset="-"/>
+            <leg type="P" ratio="1" strike_offset="---"/>
+            <leg type="C" ratio="1" strike_offset="+"/>
+            <leg type="P" ratio="1" strike="Y"/>
+            <leg type="C" ratio="1" strike_offset="++++"/>
+        </legs>
+    </combination>
+
     <combination name="Options strip" shortname="OS" identifier="d8da1af8-575b-11df-b293-75f47d9296ce">   <!-- *** -->
         <legs cardinality="more" mincount="3">
             <leg type="O" ratio="1"/>

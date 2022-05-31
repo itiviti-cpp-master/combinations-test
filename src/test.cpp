@@ -2226,6 +2226,83 @@ TEST_F(CombinationsTest, Straddle_strip_jumps_leap_fail)
     ASSERT_TRUE(check_order_basic(order));
 }
 
+// name: Christmas gift
+// shortname: CG
+// identifier: w8rt1af8-325b-156f-b123-75f47321h6ce
+
+TEST_F(CombinationsTest, Christmas_gift_strict){
+    const std::vector<Component> components = {
+            Component::from_string("C 2 2000 1999-12-31"),
+            Component::from_string("P 1 1940 2000-12-31"),
+            Component::from_string("C 1 2060 2001-12-31"),
+            Component::from_string("P 1 2090 2000-12-31"),
+            Component::from_string("C 1 1970 1999-12-31"),
+            Component::from_string("P 1 1910 1998-12-31"),
+            Component::from_string("C 1 2030 1999-12-31"),
+            Component::from_string("P 1 2001 1996-12-31"),
+            Component::from_string("C 1 2002 1999-12-31"),
+    };
+    std::vector<int> order;
+    ASSERT_EQ("Christmas gift", combinations().classify(components, order));
+    ASSERT_EQ(components.size(), order.size());
+    ASSERT_TRUE(check_order_basic(order));
+}
+
+TEST_F(CombinationsTest, not_christmas_gift){
+    const std::vector<Component> components = {
+            Component::from_string("C 2 2000 1999-12-31"),
+            Component::from_string("P 1 1940 2000-12-31"),
+            Component::from_string("C 1 2060 2001-12-31"),
+            Component::from_string("P 1 2090 2000-12-31"),
+            Component::from_string("C 1 1930 1999-12-31"), // must be between 1940 and 2000
+            Component::from_string("P 1 1910 1998-12-31"),
+            Component::from_string("C 1 2030 1999-12-31"),
+            Component::from_string("P 1 2001 1996-12-31"),
+            Component::from_string("C 1 2002 1999-12-31"),
+    };
+    std::vector<int> order = {2, 7, -3};
+    std::vector<int> save_order = {2, 7, -3};
+    ASSERT_EQ("Unclassified", combinations().classify(components, order));
+    ASSERT_EQ(order, save_order);
+}
+
+TEST_F(CombinationsTest, Christmas_gift_strict_reverse){
+    const std::vector<Component> components = {
+            Component::from_string("C 1 2002 1999-12-31"),
+            Component::from_string("P 1 2001 1996-12-31"),
+            Component::from_string("C 1 2030 1999-12-31"),
+            Component::from_string("P 1 1910 1998-12-31"),
+            Component::from_string("C 1 1970 1999-12-31"),
+            Component::from_string("P 1 2090 2000-12-31"),
+            Component::from_string("C 1 2060 2001-12-31"),
+            Component::from_string("P 1 1940 2000-12-31"),
+            Component::from_string("C 2 2000 1999-12-31"),
+    };
+    std::vector<int> order;
+    ASSERT_EQ("Christmas gift", combinations().classify(components, order));
+    ASSERT_EQ(components.size(), order.size());
+    ASSERT_TRUE(check_order_basic(order));
+}
+
+TEST_F(CombinationsTest, Christmas_gift_strict_shuffle){
+    std::vector<Component> components = {
+            Component::from_string("P 1 2090 2000-12-31"),
+            Component::from_string("P 1 1940 2000-12-31"),
+            Component::from_string("C 1 2002 1999-12-31"),
+            Component::from_string("C 1 2030 1999-12-31"),
+            Component::from_string("C 1 2060 2001-12-31"),
+            Component::from_string("P 1 2001 1996-12-31"),
+            Component::from_string("C 2 2000 1999-12-31"),
+            Component::from_string("C 1 1970 1999-12-31"),
+            Component::from_string("P 1 1910 1998-12-31"),
+    };
+    std::vector<int> order;
+    ASSERT_EQ("Christmas gift", combinations().classify(components, order));
+    ASSERT_EQ(components.size(), order.size());
+    ASSERT_TRUE(check_order_basic(order));
+}
+
+
 // name: Options strip
 // shortname: OS
 // identifier: d8da1af8-575b-11df-b293-75f47d9296ce
